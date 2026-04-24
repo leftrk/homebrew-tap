@@ -3,8 +3,8 @@ class TmuxWindowName < Formula
 
   desc "Smart tmux window names like IDE tablines"
   homepage "https://github.com/leftrk/tmux-window-name"
-  url "https://github.com/leftrk/tmux-window-name/archive/refs/tags/v1.0.2.tar.gz"
-  sha256 "10b2682be244605f32cfa624d37fcc5c22a7dd86fd728d50404622f44187156f"
+  url "https://github.com/leftrk/tmux-window-name/archive/refs/tags/v1.0.3.tar.gz"
+  sha256 "d78add2fe3f7ec86139e41585b75802d752e8a27adaef82feff990c00f1cb293"
   license "MIT"
   head "https://github.com/leftrk/tmux-window-name.git", branch: "master"
 
