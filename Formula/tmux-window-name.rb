@@ -17,14 +17,18 @@ class TmuxWindowName < Formula
   def install
     # Create virtualenv
     system "python3.11", "-m", "venv", libexec
+    
     # Install libtmux dependency
-    resource("libtmux").stage do
-      system libexec/"bin/pip", "install", "-v", "."
+    libtmux_wheel = resource("libtmux")
+    libtmux_wheel.stage do
+      system libexec/"bin/pip", "install", "--no-deps", Dir["*.whl"].first
     end
-    # Install the package
-    system libexec/"bin/pip", "install", "-v", buildpath
+    
+    # Install the main package from buildpath
+    system libexec/"bin/pip", "install", "--no-deps", buildpath
+    
     # Install entry script
-    libexec.install "tmux_window_name.tmux"
+    libexec.install buildpath/"tmux_window_name.tmux"
   end
 
   def caveats
