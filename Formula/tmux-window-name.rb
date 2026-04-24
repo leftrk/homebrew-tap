@@ -7,7 +7,7 @@ class TmuxWindowName < Formula
   head "https://github.com/leftrk/tmux-window-name.git", branch: "master"
 
   depends_on "tmux"
-  depends_on "python@3.11"
+  depends_on "python"
 
   resource "libtmux" do
     url "https://files.pythonhosted.org/packages/12/2e/819d7414b96f19ec4cafda95555246bdb9766dd7c0519b5b1bf4495789f7/libtmux-0.55.1-py3-none-any.whl"
@@ -15,18 +15,18 @@ class TmuxWindowName < Formula
   end
 
   def install
-    # Create virtualenv
-    system "python3.11", "-m", "venv", libexec
-    
-    # Install libtmux dependency
-    libtmux_wheel = resource("libtmux")
-    libtmux_wheel.stage do
+    # Create virtualenv using Homebrew's python
+    system "python3", "-m", "venv", libexec
+
+    # Install libtmux dependency (wheel, no build needed)
+    resource("libtmux").stage do
       system libexec/"bin/pip", "install", "--no-deps", Dir["*.whl"].first
     end
-    
-    # Install the main package from buildpath
+
+    # Install the main package from source
+    # Note: pyproject.toml uses uv_build backend, but pip handles it
     system libexec/"bin/pip", "install", "--no-deps", buildpath
-    
+
     # Install entry script
     libexec.install buildpath/"tmux_window_name.tmux"
   end
