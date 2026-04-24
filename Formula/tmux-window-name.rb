@@ -1,8 +1,10 @@
 class TmuxWindowName < Formula
+  include Language::Python::Virtualenv
+
   desc "Smart tmux window names like IDE tablines"
   homepage "https://github.com/leftrk/tmux-window-name"
-  url "https://github.com/leftrk/tmux-window-name/archive/refs/tags/v1.0.1.tar.gz"
-  sha256 "4f043f4299eb6e692e5c25dfc1b546e1792784050f2607c6f952798d2816837c"
+  url "https://github.com/leftrk/tmux-window-name/archive/refs/tags/v1.0.2.tar.gz"
+  sha256 "10b2682be244605f32cfa624d37fcc5c22a7dd86fd728d50404622f44187156f"
   license "MIT"
   head "https://github.com/leftrk/tmux-window-name.git", branch: "master"
 
@@ -10,25 +12,13 @@ class TmuxWindowName < Formula
   depends_on "python"
 
   resource "libtmux" do
-    url "https://files.pythonhosted.org/packages/12/2e/819d7414b96f19ec4cafda95555246bdb9766dd7c0519b5b1bf4495789f7/libtmux-0.55.1-py3-none-any.whl"
-    sha256 "4382667d508610bdf71a7cc07d7a561d402fa2d5621cce299e7ae97b0cdcb93b"
+    url "https://files.pythonhosted.org/packages/source/l/libtmux/libtmux-0.55.1.tar.gz"
+    sha256 "dcee950537b8bda4337267bc2cb62b434c4c8da3a75c1546151674238ef14e20"
   end
 
   def install
-    # Create virtualenv using Homebrew's python
-    system "python3", "-m", "venv", libexec
-
-    # Install libtmux dependency (wheel, no build needed)
-    resource("libtmux").stage do
-      system libexec/"bin/pip", "install", "--no-deps", Dir["*.whl"].first
-    end
-
-    # Install the main package from source
-    # Note: pyproject.toml uses uv_build backend, but pip handles it
-    system libexec/"bin/pip", "install", "--no-deps", buildpath
-
-    # Install entry script
-    libexec.install buildpath/"tmux_window_name.tmux"
+    virtualenv_install_with_resources
+    libexec.install "tmux_window_name.tmux"
   end
 
   def caveats
