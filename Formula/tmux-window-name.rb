@@ -4,17 +4,26 @@ class TmuxWindowName < Formula
   url "https://github.com/leftrk/tmux-window-name/archive/refs/tags/v1.0.0.tar.gz"
   sha256 "ed4af28c39ab6823b8affb299e15a9e4605dd75e656ae2b8ec38b6a046712e1a"
   license "MIT"
-  head "https://github.com/leftrk/tmux-window-name.git", branch: "dev"
+  head "https://github.com/leftrk/tmux-window-name.git", branch: "master"
 
   depends_on "tmux"
   depends_on "python@3.11"
 
-  def install
-    # Create virtualenv and install the package
-    venv = virtualenv_create(libexec, "python3.11")
-    venv.pip_install(buildpath)
+  resource "libtmux" do
+    url "https://files.pythonhosted.org/packages/12/2e/819d7414b96f19ec4cafda95555246bdb9766dd7c0519b5b1bf4495789f7/libtmux-0.55.1-py3-none-any.whl"
+    sha256 "4382667d508610bdf71a7cc07d7a561d402fa2d5621cce299e7ae97b0cdcb93b"
+  end
 
-    # Install bash entry script
+  def install
+    # Create virtualenv
+    system "python3.11", "-m", "venv", libexec
+    # Install libtmux dependency
+    resource("libtmux").stage do
+      system libexec/"bin/pip", "install", "-v", "."
+    end
+    # Install the package
+    system libexec/"bin/pip", "install", "-v", buildpath
+    # Install entry script
     libexec.install "tmux_window_name.tmux"
   end
 
@@ -34,7 +43,6 @@ class TmuxWindowName < Formula
 
   test do
     assert_predicate libexec/"tmux_window_name.tmux", :exist?
-    # Test that package is installed in virtualenv
-    assert_predicate libexec/"lib/python3.11/site-packages/tmux_window_name/__init__.py", :exist?
+    assert_predicate libexec/"bin/tmux-window-name", :exist?
   end
 end
