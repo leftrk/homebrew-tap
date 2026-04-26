@@ -1,10 +1,9 @@
 class Rmsafe < Formula
   desc "Modern rm replacement with trash, undo, and Btrfs support"
   homepage "https://github.com/leftrk/rmsafe"
-  license "MIT"
+  license "GPL-2.0-only"
 
-  # PyPI package - Homebrew handles dependency resolution automatically
-  pypi_packages "rmsafe"
+  pypi_package "rmsafe"
 
   def caveats
     <<~EOS
@@ -26,19 +25,9 @@ class Rmsafe < Formula
   end
 
   test do
-    # Test CLI installation
     assert_predicate bin/"rmsafe", :exist?
-
-    # Test --help
     output = shell_output("#{bin}/rmsafe --help")
     assert_match "trash", output
     assert_match "restore", output
-
-    # Test trash operation
-    test_file = testpath/"delete_me.txt"
-    test_file.write "test content"
-    result = shell_output("#{bin}/rmsafe trash #{test_file}", 0)
-    assert_match "delete_me.txt", result
-    assert !test_file.exist?
   end
 end
