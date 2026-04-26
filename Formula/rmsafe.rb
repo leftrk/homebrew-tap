@@ -3,7 +3,20 @@ class Rmsafe < Formula
   homepage "https://github.com/leftrk/rmsafe"
   license "GPL-2.0-only"
 
-  pypi_package "rmsafe"
+  depends_on "python@3.11"
+
+  resource "rmsafe" do
+    url "https://files.pythonhosted.org/packages/py3/r/rmsafe/rmsafe-1.1.1-py3-none-any.whl"
+    sha256 "598e58357c5e9a05efd3a3423d11bec83bb5ea00bae824ad4e476986f76cd8a1"
+  end
+
+  def install
+    python3 = "python3.11"
+    venv = virtualenv_create(libexec, python3)
+
+    venv.install_resources(resources)
+    bin.install_symlink libexec/"bin/rmsafe"
+  end
 
   def caveats
     <<~EOS
