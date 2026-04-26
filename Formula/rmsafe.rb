@@ -13,10 +13,8 @@ class Rmsafe < Formula
   # from pyproject.toml when installing from git
 
   def install
-    # Create virtualenv and install from git source
     venv = virtualenv_create(libexec, "python3.11")
-    venv.pip_install(buildpath)
-    bin.install_symlink(venv.bin/"rmsafe")
+    venv.pip_install_and_link(buildpath)
   end
 
   def caveats
