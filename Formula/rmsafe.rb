@@ -8,6 +8,12 @@ class Rmsafe < Formula
   license "GPL-2.0-only"
   head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_tahoe: "a2d4d4176174b32146496d9c65ac87fe6b56e80568e99f25c96e74099fcf0f0b"
+  end
+
   depends_on "python@3.12"
 
   resource "annotated-doc" do
