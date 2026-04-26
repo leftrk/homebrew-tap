@@ -1,8 +1,10 @@
 class TmuxSmartName < Formula
+  include Language::Python::Virtualenv
+
   desc "Smart tmux window names like IDE tablines"
   homepage "https://github.com/leftrk/tmux-smart-name"
-  url "https://github.com/leftrk/tmux-smart-name/archive/refs/tags/v1.0.4.tar.gz"
-  sha256 "f38f3dcbe4628865097f67f643356d8338ef415c4b50542c02083a8ee9127ef0"
+  url "https://github.com/leftrk/tmux-smart-name/archive/refs/tags/v1.0.6.tar.gz"
+  sha256 "36574bab3a117ad23618f1175c6c9405ba5c85faf96b4c96874e1f6e23bbc96b"
   license "MIT"
   head "https://github.com/leftrk/tmux-smart-name.git", branch: "master"
 
