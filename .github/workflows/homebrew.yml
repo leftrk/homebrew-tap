@@ -1,0 +1,65 @@
+name: Homebrew
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Formula/**'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'Formula/**'
+  workflow_dispatch:
+
+jobs:
+  test-formula:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout tap
+        uses: actions/checkout@v4
+        with:
+          repository: leftrk/homebrew-tap
+          path: tap
+
+      - name: Checkout rmsafe source
+        uses: actions/checkout@v4
+        with:
+          repository: leftrk/rmsafe
+          path: rmsafe
+
+      - name: Set up formula to use local source
+        run: |
+          # Replace git URL with local path for testing
+          cd tap
+          sed -i '' 's|url "https://github.com/leftrk/rmsafe.git"|url "file://../rmsafe", branch: "main"|' Formula/rmsafe.rb
+
+      - name: Install formula from source
+        run: |
+          cd tap
+          brew install --build-from-source Formula/rmsafe.rb
+
+      - name: Test formula
+        run: |
+          # Test CLI exists
+          test -f "$(brew --prefix rmsafe)/bin/rmsafe"
+
+          # Test --help
+          rmsafe --help | grep -q "trash"
+
+          # Test trash operation
+          echo "test content" > /tmp/test_brew_file.txt
+          rmsafe trash /tmp/test_brew_file.txt
+          test ! -f /tmp/test_brew_file.txt
+
+          # Test list
+          rmsafe list | grep -q "test_brew_file"
+
+          # Test undo
+          rmsafe undo --list | grep -q "test_brew_file"
+
+          # Test status
+          rmsafe status | grep -q "Trash"
+
+      - name: Cleanup
+        if: always()
+        run: brew uninstall rmsafe || true
