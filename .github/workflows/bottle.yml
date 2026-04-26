@@ -12,7 +12,7 @@ jobs:
   bottle:
     strategy:
       matrix:
-        runner: [macos-13, macos-14]
+        runner: [macos-14]
     runs-on: ${{ matrix.runner }}
     steps:
       - uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
         with:
           name: bottle-${{ matrix.runner }}
           path: |
-            *.bottle.tar.gz
+            *.bottle.*.tar.gz
             *.bottle.json
 
   upload:
@@ -43,12 +43,18 @@ jobs:
         with:
           merge-multiple: true
 
+      - name: Rename bottle files for Homebrew 5.x
+        run: |
+          for f in *--*.tar.gz; do
+            [ -f "$f" ] && mv "$f" "${f//--/-}"
+          done
+
       - name: Create or update bottles release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           gh release create bottles --title "Bottles" --notes "Pre-built bottles" 2>/dev/null || true
-          for f in *.bottle.tar.gz; do
+          for f in *.bottle.*.tar.gz; do
             gh release upload bottles "$f" --clobber
           done
 

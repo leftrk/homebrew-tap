@@ -18,8 +18,11 @@ jobs:
       - name: Checkout tap
         uses: actions/checkout@v4
 
-      - name: Install formula from PyPI
-        run: brew install --build-from-source Formula/rmsafe.rb
+      - name: Set up tap
+        run: brew tap leftrk/tap ${{ github.workspace }}
+
+      - name: Install formula
+        run: brew install --build-from-source leftrk/tap/rmsafe
 
       - name: Test formula
         run: |
