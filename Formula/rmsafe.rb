@@ -3,7 +3,7 @@ class Rmsafe < Formula
 
   desc "Modern rm replacement with trash, undo, and Btrfs support"
   homepage "https://github.com/leftrk/rmsafe"
-  url "https://github.com/leftrk/rmsafe.git", tag: "v1.0.0"
+  url "https://github.com/leftrk/rmsafe.git", tag: "v1.1.0"
   license "MIT"
   head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
