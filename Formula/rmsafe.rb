@@ -1,21 +1,10 @@
 class Rmsafe < Formula
-  include Language::Python::Virtualenv
-
   desc "Modern rm replacement with trash, undo, and Btrfs support"
   homepage "https://github.com/leftrk/rmsafe"
-  url "https://github.com/leftrk/rmsafe.git", tag: "v1.1.0"
   license "MIT"
-  head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
-  depends_on "python@3.11"
-
-  # Uses virtualenv_install_with_resources which handles dependencies automatically
-  # from pyproject.toml when installing from git
-
-  def install
-    venv = virtualenv_create(libexec, "python3.11")
-    venv.pip_install_and_link(buildpath)
-  end
+  # PyPI package - Homebrew handles dependency resolution automatically
+  pypi_packages "rmsafe"
 
   def caveats
     <<~EOS
