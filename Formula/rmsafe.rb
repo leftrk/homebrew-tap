@@ -2,20 +2,15 @@ class Rmsafe < Formula
   desc "Modern rm replacement with trash, undo, and Btrfs support"
   homepage "https://github.com/leftrk/rmsafe"
   license "GPL-2.0-only"
+  url "https://files.pythonhosted.org/packages/source/r/rmsafe/rmsafe-1.1.1.tar.gz"
+  sha256 "aef331dc6c072d55ed05fe9181b4b1dc2efdf7b1b3c3d416bdf1f5030f67ab6a"
+  head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
   depends_on "python@3.11"
 
-  resource "rmsafe" do
-    url "https://files.pythonhosted.org/packages/py3/r/rmsafe/rmsafe-1.1.1-py3-none-any.whl"
-    sha256 "598e58357c5e9a05efd3a3423d11bec83bb5ea00bae824ad4e476986f76cd8a1"
-  end
-
   def install
-    python3 = "python3.11"
-    venv = virtualenv_create(libexec, python3)
-
-    venv.install_resources(resources)
-    bin.install_symlink libexec/"bin/rmsafe"
+    venv = virtualenv_create(libexec, "python3.11")
+    venv.pip_install_and_link(buildpath)
   end
 
   def caveats
