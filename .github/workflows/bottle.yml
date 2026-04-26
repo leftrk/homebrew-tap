@@ -19,8 +19,9 @@ jobs:
 
       - name: Build bottle
         run: |
-          brew install --build-bottle Formula/${{ inputs.formula }}.rb
-          brew bottle --json --root-url="https://github.com/${{ github.repository }}/releases/download/bottles" Formula/${{ inputs.formula }}.rb
+          brew tap leftrk/tap ${{ github.workspace }}
+          brew install --build-bottle leftrk/tap/${{ inputs.formula }}
+          brew bottle --json --root-url="https://github.com/${{ github.repository }}/releases/download/bottles" leftrk/tap/${{ inputs.formula }}
           ls -la *.tar.gz *.json
 
       - uses: actions/upload-artifact@v4
