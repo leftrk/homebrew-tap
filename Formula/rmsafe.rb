@@ -3,19 +3,11 @@ class Rmsafe < Formula
 
   desc "Modern rm replacement with trash, undo, and Btrfs support"
   homepage "https://github.com/leftrk/rmsafe"
-  url "https://files.pythonhosted.org/packages/source/r/rmsafe/rmsafe-1.2.0.tar.gz"
-  sha256 "f6cf907c1d4ad7e25dd7081c225a4344a3d78a94fb7aec93a40992cddd98056a"
+  url "https://files.pythonhosted.org/packages/source/r/rmsafe/rmsafe-1.3.0.tar.gz"
+  sha256 "452e551d0cbfd4e5ea7661061f16fd5dad60a9ff152c1cad8972aeaa006feaca"
   license "GPL-2.0-only"
-  version "1.2.1"
+  version "1.3.0"
   head "https://github.com/leftrk/rmsafe.git", branch: "main"
-
-  bottle do
-    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "d0eb41f15030493305510303b74f094d2107e842c8a3cf6ff24457fcfd0afc23"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:  "63e5df21454c7c9d5900539918eb55a9844d09af0a74edebfa0a6a1e026eb8ef"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:  "5b509db4f7710a11050d1f288c7e355437c211fd5e3f59fddea054ebabdf04aa"
-  end
 
   depends_on "python@3.12"
 
@@ -75,6 +67,6 @@ class Rmsafe < Formula
   test do
     assert_predicate bin/"rmsafe", :exist?
     output = shell_output("#{bin}/rmsafe --version")
-    assert_match "1.2.0", output
+    assert_match "1.3.0", output
   end
 end
