@@ -11,6 +11,7 @@ class Rmsafe < Formula
 
   bottle do
     root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    rebuild 1
     sha256 cellar: :any_skip_relocation, arm64_sequoia: "d0eb41f15030493305510303b74f094d2107e842c8a3cf6ff24457fcfd0afc23"
     sha256 cellar: :any_skip_relocation, arm64_sonoma:  "63e5df21454c7c9d5900539918eb55a9844d09af0a74edebfa0a6a1e026eb8ef"
     sha256 cellar: :any_skip_relocation, x86_64_linux:  "5b509db4f7710a11050d1f288c7e355437c211fd5e3f59fddea054ebabdf04aa"
