@@ -6,12 +6,12 @@ class Rmsafe < Formula
   url "https://files.pythonhosted.org/packages/source/r/rmsafe/rmsafe-1.2.0.tar.gz"
   sha256 "f6cf907c1d4ad7e25dd7081c225a4344a3d78a94fb7aec93a40992cddd98056a"
   license "GPL-2.0-only"
+  version "1.2.1"
   head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
   bottle do
     root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
-    rebuild 1
-    sha256 cellar: :any_skip_relocation, arm64_tahoe: "a2d4d4176174b32146496d9c65ac87fe6b56e80568e99f25c96e74099fcf0f0b"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5b04cbdc1653d9f2aa8fbac171257d36b470d35c18d6ec38fb348ea19b0e21bc"
   end
 
   depends_on "python@3.12"
