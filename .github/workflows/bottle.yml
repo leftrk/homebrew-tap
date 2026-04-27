@@ -21,13 +21,16 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Set up Homebrew (Linux)
+      - name: Set up Homebrew
         if: runner.os == 'Linux'
         uses: Homebrew/actions/setup-homebrew@master
 
+      - name: Tap formula (macOS)
+        if: runner.os == 'macOS'
+        run: brew tap leftrk/tap "${{ github.workspace }}"
+
       - name: Build bottle
         run: |
-          brew tap leftrk/tap "${{ github.workspace }}"
           brew install --build-bottle leftrk/tap/${{ inputs.formula }}
           brew bottle --json --root-url="https://github.com/${{ github.repository }}/releases/download/bottles" leftrk/tap/${{ inputs.formula }}
           ls -la *.bottle.*.tar.gz *.bottle.json
