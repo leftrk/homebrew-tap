@@ -9,6 +9,14 @@ class Rmsafe < Formula
   version "1.4.0"
   head "https://github.com/leftrk/rmsafe.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "29fb2458f949302ac7fea2f4b4825101faecb4fbce8cd966786b9883aa84ba69"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "ae6d09a7d05cdf60bda67c77c47fcf8fadb2d68871f6437cbcb57e4c6e4c6dde"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "4e6a1e5e0714addde94f2965e3b98cf6f507c5efafa546fe627db3cb7cf4e150"
+  end
+
   depends_on "python@3.12"
 
   resource "annotated-doc" do
