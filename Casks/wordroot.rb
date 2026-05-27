@@ -1,11 +1,11 @@
 cask "wordroot" do
-  version "0.0.2"
-  sha256 "555ce6aa2751a30e556bcafb36e50c458af9d4d5926fcddea799666a80f66457"
+  version "0.1.2"
+  sha256 "c527f9c6bbff36f80496a79fc8c0fa85532702ca12603b44b9f41cd28113a1ee"
 
-  url "https://github.com/leftrk/word-root/releases/download/v#{version}/Wordroot-#{version}.dmg"
+  url "https://github.com/leftrk/wordroot-dist/releases/download/v#{version}/Wordroot-#{version}.dmg"
   name "Wordroot"
   desc "词根词典，让词汇有迹可循"
-  homepage "https://github.com/leftrk/word-root"
+  homepage "https://github.com/leftrk/wordroot-dist"
 
   depends_on macos: ">= :ventura"
 
