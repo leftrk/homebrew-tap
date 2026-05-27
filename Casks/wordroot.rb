@@ -1,13 +1,13 @@
 cask "wordroot" do
   version "0.1.0"
-  sha256 "4dee1403890c9c927102d5c83686bb749b94892cd293592ed19a3b4dd22dd616"
+  sha256 "43305a80e593f97d0e19deb849a90681351e9e444282c1c7367e99e6bb86049b"
 
-  url "https://github.com/leftrk/homebrew-tap/releases/download/v0.1.0-wordroot/Wordroot-0.1.0.dmg"
+  url "https://github.com/leftrk/word-root/releases/download/v0.1.0/Wordroot.zip"
   name "Wordroot"
   desc "词根词典，让词汇有迹可循"
-  homepage "https://github.com/leftrk/wordroot"
+  homepage "https://github.com/leftrk/word-root"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: ">= :ventura"
 
   app "Wordroot.app"
 
