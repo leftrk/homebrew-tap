@@ -1,6 +1,6 @@
 cask "typeback" do
-  version "1.0.3"
-  sha256 "eff0cffb6af50beb0d9ca1d367623aaaa2d085258fc045d39c46d35449d92040"
+  version "1.1.0"
+  sha256 "98619d05d2523950f100aec0f8dbafe97b6c242cf7936acfd4d2a5e659b79666"
 
   url "https://github.com/leftrk/typeback/releases/download/v#{version}/TypeBack.dmg"
   name "TypeBack"
