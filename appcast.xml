@@ -1,16 +1,16 @@
-<?xml version="1.0" standalone="yes"?>
-<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+<?xml version='1.0' standalone='yes'?>
+<rss xmlns:sparkle='http://www.andymatuschak.org/xml-namespaces/sparkle' version='2.0'>
     <channel>
         <title>TypeBack</title>
         <item>
-            <title>1.1.0</title>
-            <pubDate>Fri, 05 Jun 2026 23:15:54 +0800</pubDate>
+            <title>1.1.1</title>
+            <pubDate>Sat, 06 Jun 2026 11:07:17 +0800</pubDate>
             <link>https://github.com/leftrk/typeback</link>
-            <sparkle:version>1.1.0</sparkle:version>
-            <sparkle:shortVersionString>1.1.0</sparkle:shortVersionString>
+            <sparkle:version>1.1.1</sparkle:version>
+            <sparkle:shortVersionString>1.1.1</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url="https://github.com/leftrk/typeback/releases/download/v1.1.0/TypeBack.dmg" length="1526878" type="application/octet-stream" sparkle:edSignature="qSajwDUTZVGX7ol6fOJdcFfJ4Kik8uPi/DNM2VitXoJg5RxYkBHygvTH6iHMLCFAhdA3RZZr9ANF7FvzJu0IBA=="/>
+            <enclosure url='https://github.com/leftrk/typeback/releases/download/v1.1.1/TypeBack.dmg' length='1878723' type='application/octet-stream' sparkle:edSignature='8Qg1b38qRVRDTDkJFysDoEIUULsuNC4LXK8rBIPzRnlnsAfWb11KKuMVv19s290lg7Cxho9KGi71rQXNFFurBw=='/>
         </item>
     </channel>
 </rss>
