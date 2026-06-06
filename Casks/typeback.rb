@@ -1,6 +1,6 @@
 cask "typeback" do
-  version "1.1.6"
-  sha256 "e6ac339c0e0c1de5fed73c9e4fb9743e012e80c7f412e6f6f3bf152b4c6306b1"
+  version "1.1.7"
+  sha256 "813c3232b9d5831d429a5c947505582fb655320bebf24c977cdb38a51f802552"
 
   url "https://github.com/leftrk/typeback/releases/download/v#{version}/TypeBack.dmg"
   name "TypeBack"
@@ -16,13 +16,18 @@ cask "typeback" do
     "~/Library/Preferences/TypeBack.plist",
     "~/Library/Preferences/TypeBackStandalone.plist",
     "~/Library/Preferences/com.huaguan.typeback.app.plist",
+    "~/Library/Preferences/com.typeback.app.plist",
     "~/Library/Application Support/com.huaguan.typeback",
+    "~/Library/Application Support/com.typeback.app",
     "~/Library/Caches/com.huaguan.typeback",
+    "~/Library/Caches/com.typeback.app",
   ]
 
   caveats <<~EOS
     TypeBack 需要辅助功能权限才能监听键盘事件：
       系统设置 → 隐私与安全性 → 辅助功能 → 添加 TypeBack
+
+    1.1.7 更换了应用身份以避开 macOS 26 菜单栏缓存问题，升级后需要重新授权辅助功能权限。
 
     如 macOS 26 提示无法验证 TypeBack，可运行：
       xattr -dr com.apple.quarantine /Applications/TypeBack.app
