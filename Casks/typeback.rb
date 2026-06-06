@@ -1,6 +1,6 @@
 cask "typeback" do
-  version "1.1.4"
-  sha256 "55195a53ee187c6bee81f99e55d462e1386986e6446d42b8173cd6fb28223315"
+  version "1.1.5"
+  sha256 "53ef5d00053960f1b9deb52cf8131e115ebbe41a58189c05f2c34ccf22f3f390"
 
   url "https://github.com/leftrk/typeback/releases/download/v#{version}/TypeBack.dmg"
   name "TypeBack"
@@ -30,8 +30,6 @@ cask "typeback" do
   caveats <<~EOS
     TypeBack 需要辅助功能权限才能监听键盘事件：
       系统设置 → 隐私与安全性 → 辅助功能 → 添加 TypeBack
-
-    已支持 Sparkle 自动更新，可在菜单栏点击"检查更新..."。
 
     如 macOS 26 提示无法验证 TypeBack，可运行：
       xattr -dr com.apple.quarantine /Applications/TypeBack.app
