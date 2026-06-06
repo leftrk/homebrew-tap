@@ -1,6 +1,6 @@
 cask "typeback" do
-  version "2.0.0"
-  sha256 "09c3e7ce422b8f811ec3d200c8048d80613e6304624f9bfc1a3fd0647eee9e70"
+  version "2.0.1"
+  sha256 "e958a07dfaf65999b47bc9ddec9ea20633535acef43ed0e36a69bb8b2ac40117"
 
   url "https://github.com/leftrk/typeback/releases/download/v#{version}/TypeBack.dmg"
   name "TypeBack"
@@ -27,7 +27,7 @@ cask "typeback" do
     TypeBack 需要辅助功能权限才能监听键盘事件：
       系统设置 → 隐私与安全性 → 辅助功能 → 添加 TypeBack
 
-    1.1.7 更换了应用身份以避开 macOS 26 菜单栏缓存问题，升级后需要重新授权辅助功能权限。
+    TypeBack 的正式应用身份固定为 com.typeback.app。如从旧身份版本升级，可能需要重新授权辅助功能权限。
 
     如 macOS 26 提示无法验证 TypeBack，可运行：
       xattr -dr com.apple.quarantine /Applications/TypeBack.app
