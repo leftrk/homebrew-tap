@@ -1,6 +1,6 @@
 cask "typeback" do
-  version "1.1.5"
-  sha256 "53ef5d00053960f1b9deb52cf8131e115ebbe41a58189c05f2c34ccf22f3f390"
+  version "1.1.6"
+  sha256 "e6ac339c0e0c1de5fed73c9e4fb9743e012e80c7f412e6f6f3bf152b4c6306b1"
 
   url "https://github.com/leftrk/typeback/releases/download/v#{version}/TypeBack.dmg"
   name "TypeBack"
@@ -16,13 +16,6 @@ cask "typeback" do
     "~/Library/Preferences/TypeBack.plist",
     "~/Library/Preferences/TypeBackStandalone.plist",
     "~/Library/Preferences/com.huaguan.typeback.app.plist",
-    "~/Library/Preferences/com.huaguan.typeback.fixed.plist",
-    "~/Library/Preferences/com.huaguan.typeback.macos26test.plist",
-    "~/Library/Preferences/com.huaguan.typeback.test.plist",
-    "~/Library/Preferences/com.huaguan.typeback.v111.plist",
-    "~/Library/Preferences/com.huaguan.typeback.v2test.plist",
-    "~/Library/Preferences/com.test.fresh.typeback.plist",
-    "~/Library/Preferences/com.jordanbaird.Ice.plist",
     "~/Library/Application Support/com.huaguan.typeback",
     "~/Library/Caches/com.huaguan.typeback",
   ]
