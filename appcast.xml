@@ -3,14 +3,14 @@
     <channel>
         <title>TypeBack</title>
         <item>
-            <title>1.1.2</title>
-            <pubDate>Sat, 06 Jun 2026 11:20:14 +0800</pubDate>
+            <title>1.1.3</title>
+            <pubDate>Sat, 06 Jun 2026 11:24:36 +0800</pubDate>
             <link>https://github.com/leftrk/typeback</link>
-            <sparkle:version>1.1.2</sparkle:version>
-            <sparkle:shortVersionString>1.1.2</sparkle:shortVersionString>
+            <sparkle:version>1.1.3</sparkle:version>
+            <sparkle:shortVersionString>1.1.3</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.0</sparkle:minimumSystemVersion>
             <sparkle:hardwareRequirements>arm64</sparkle:hardwareRequirements>
-            <enclosure url='https://github.com/leftrk/typeback/releases/download/v1.1.2/TypeBack.dmg' length='1878821' type='application/octet-stream' sparkle:edSignature='tpfze8UQnmYS58o3jwONfN1baNtvAkEx17c6OIxQg9nn/FgsiF0EvxBVIH9G1TiLWSHaezDXNe9BG/qYt/+NDA=='/>
+            <enclosure url='https://github.com/leftrk/typeback/releases/download/v1.1.3/TypeBack.dmg' length='1878148' type='application/octet-stream' sparkle:edSignature='3qhux2czuJGlp7nGd0mMQsa8tv3ig69SWhj916WT0fisLkHmHSeezTaxUBKEVfOIM9lF96caYpXc39ydDvuEBQ=='/>
         </item>
     </channel>
 </rss>
