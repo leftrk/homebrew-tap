@@ -7,7 +7,7 @@ cask "typeback" do
   desc "macOS 输入法自动回切工具"
   homepage "https://github.com/leftrk/typeback"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "TypeBack.app"
 
