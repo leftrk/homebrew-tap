@@ -69,10 +69,11 @@ jobs:
             gh release upload bottles "$f" --clobber
           done
 
-      - name: Generate bottle block
+      - name: Generate bottle block and update formula
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          echo "=== Add this to Formula/${{ inputs.formula }}.rb ==="
-          python3 - *.bottle.json <<'PYEOF'
+          python3 - *.bottle.json <<'PYEOF' > /tmp/bottle-block.txt
           import json, sys, pathlib
           bottles = {}
           for f in sys.argv[1:]:
@@ -80,10 +81,33 @@ jobs:
               for formula_data in data.values():
                   for tag, info in formula_data["bottle"]["tags"].items():
                       bottles[tag] = info["sha256"]
-          print("  bottle do")
           root = "https://github.com/${{ github.repository }}/releases/download/bottles"
-          print(f'    root_url "{root}"')
+          lines = ["  bottle do", f'    root_url "{root}"']
+          lines.append("    rebuild 1")
           for tag, sha in sorted(bottles.items()):
-              print(f'    sha256 cellar: :any_skip_relocation, {tag}: "{sha}"')
-          print("  end")
+              lines.append(f'    sha256 cellar: :any_skip_relocation, {tag}: "{sha}"')
+          lines.append("  end")
+          print("\n".join(lines))
           PYEOF
+
+          echo "=== Generated bottle block ==="
+          cat /tmp/bottle-block.txt
+
+          # Insert bottle block into formula (before first 'depends_on')
+          python3 <<'PYEOF'
+          import re
+          formula_path = "Formula/${{ inputs.formula }}.rb"
+          bottle_block = open("/tmp/bottle-block.txt").read().strip()
+          formula = open(formula_path).read()
+          formula = re.sub(r"(?=\n  depends_on)", "\n" + bottle_block + "\n", formula, count=1)
+          open(formula_path, "w").write(formula)
+          PYEOF
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/${{ inputs.formula }}.rb
+          git diff --cached --quiet && echo "No changes to commit" || (
+            git commit -m "chore: add bottle hashes for ${{ inputs.formula }}"
+            git pull --rebase origin main
+            git push
+          )

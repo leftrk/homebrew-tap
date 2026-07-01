@@ -1,0 +1,84 @@
+name: Auto Update Formula
+
+on:
+  schedule:
+    - cron: '0 8 * * *' # Daily at 8:00 UTC (16:00 CST)
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  actions: write
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Check upstream release
+        id: check
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          LATEST=$(gh release view --repo Gitlawb/openclaude --json tagName --jq '.tagName')
+          LATEST_VERSION="${LATEST#v}"
+          CURRENT_VERSION=$(ruby -e "puts File.read('Formula/openclaude.rb').match(/version \"(\d+\.\d+\.\d+)\"/)[1]")
+
+          echo "Latest upstream: v$LATEST_VERSION"
+          echo "Current formula: v$CURRENT_VERSION"
+
+          if [ "$LATEST_VERSION" = "$CURRENT_VERSION" ]; then
+            echo "has_update=false" >> "$GITHUB_OUTPUT"
+            echo "Already up to date."
+            exit 0
+          fi
+
+          echo "has_update=true" >> "$GITHUB_OUTPUT"
+          echo "new_version=$LATEST_VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=$LATEST" >> "$GITHUB_OUTPUT"
+
+      - name: Update formula
+        if: steps.check.outputs.has_update == 'true'
+        env:
+          NEW_VERSION: ${{ steps.check.outputs.new_version }}
+          TAG: ${{ steps.check.outputs.tag }}
+        run: |
+          URL="https://github.com/Gitlawb/openclaude/archive/refs/tags/${TAG}.tar.gz"
+          SHA256=$(curl -sL "$URL" | sha256sum | cut -d' ' -f1)
+
+          echo "URL: $URL"
+          echo "SHA256: $SHA256"
+
+          python3 <<'PYEOF'
+          import os, re
+
+          new_version = os.environ["NEW_VERSION"]
+          url = os.environ["URL"]
+          sha256 = os.environ["SHA256"]
+
+          formula_path = "Formula/openclaude.rb"
+          formula = open(formula_path).read()
+
+          formula = re.sub(r'version "\d+\.\d+\.\d+"', f'version "{new_version}"', formula)
+          formula = re.sub(r'url "https://github\.com/Gitlawb/openclaude/archive/refs/tags/[^"]+\.tar\.gz"', f'url "{url}"', formula)
+          formula = re.sub(r'sha256 "[a-f0-9]{64}"', f'sha256 "{sha256}"', formula)
+          # Remove existing bottle block (between 'bottle do' and its 'end')
+          formula = re.sub(r'\n  bottle do\n.*?\n  end\n', '\n', formula, flags=re.DOTALL)
+
+          open(formula_path, "w").write(formula)
+          print("=== Updated formula ===")
+          print(open(formula_path).read())
+          PYEOF
+
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add Formula/openclaude.rb
+          git commit -m "chore: bump openclaude to v${NEW_VERSION}"
+          git push
+
+      - name: Trigger bottle build
+        if: steps.check.outputs.has_update == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh workflow run bottle.yml -f formula=openclaude
