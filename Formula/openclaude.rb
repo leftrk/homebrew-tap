@@ -7,6 +7,13 @@ class Openclaude < Formula
   version "0.21.0"
   head "https://github.com/Gitlawb/openclaude.git", branch: "main"
 
+  bottle do
+    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "536cf071f4a5a51afef07430cb91186f0bf1060529108a7530c86bd40bd650c8"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "2b8237ea0435098d3677e2144d39d1a11ee7953f88c514ec4b36c8f24a66ab04"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "df10b9156dd3442f6dae3426793a4a5436ad06b5d6023aa8b425978ea3217077"
+  end
+
   depends_on "bun" => :build
   depends_on "node"
 
