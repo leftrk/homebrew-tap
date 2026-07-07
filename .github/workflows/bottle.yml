@@ -93,12 +93,15 @@ jobs:
           echo "=== Generated bottle block ==="
           cat /tmp/bottle-block.txt
 
-          # Insert bottle block into formula (before first 'depends_on')
+          # Remove any existing bottle block(s), then insert the new one before the
+          # first depends_on. Without removal, repeated runs stack multiple
+          # bottle blocks and Homebrew uses the first (stale) one.
           python3 <<'PYEOF'
           import re
           formula_path = "Formula/${{ inputs.formula }}.rb"
           bottle_block = open("/tmp/bottle-block.txt").read().strip()
           formula = open(formula_path).read()
+          formula = re.sub(r'\n *bottle do\n.*?\n *end\n', '\n', formula, flags=re.DOTALL)
           formula = re.sub(r"(?=\n  depends_on)", "\n" + bottle_block + "\n", formula, count=1)
           open(formula_path, "w").write(formula)
           PYEOF

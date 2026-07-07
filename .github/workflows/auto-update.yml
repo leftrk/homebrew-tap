@@ -61,7 +61,7 @@ jobs:
           formula = re.sub(r'url "https://github\.com/Gitlawb/openclaude/archive/refs/tags/[^"]+\.tar\.gz"', f'url "{url}"', formula)
           formula = re.sub(r'sha256 "[a-f0-9]{64}"', f'sha256 "{sha256}"', formula)
           # Remove existing bottle block (between 'bottle do' and its 'end')
-          formula = re.sub(r'\n  bottle do\n.*?\n  end\n', '\n', formula, flags=re.DOTALL)
+          formula = re.sub(r'\n *bottle do\n.*?\n *end\n', '\n', formula, flags=re.DOTALL)
 
           open(formula_path, "w").write(formula)
           print("=== Updated formula ===")
