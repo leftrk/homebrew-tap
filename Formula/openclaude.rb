@@ -1,10 +1,10 @@
 class Openclaude < Formula
   desc "OpenClaude opens coding-agent workflows to any LLM — OpenAI, Gemini, DeepSeek, Ollama, and 200+ models"
   homepage "https://github.com/Gitlawb/openclaude"
-  url "https://github.com/Gitlawb/openclaude/archive/refs/tags/v0.22.0.tar.gz"
-  sha256 "3977bed29defcab0d65c6e33c80ece8ff9930166cd73b6859dd6582abf04560f"
+  url "https://github.com/Gitlawb/openclaude/archive/refs/tags/v0.23.0.tar.gz"
+  sha256 "0c3ca070da49bd7a1b3cf07700df9b213a755a79a0ff2e67ed8870218ebfe872"
   license "SEE LICENSE FILE"
-  version "0.22.0"
+  version "0.23.0"
   head "https://github.com/Gitlawb/openclaude.git", branch: "main"
 
 
