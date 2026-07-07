@@ -49,12 +49,10 @@ jobs:
           echo "URL: $URL"
           echo "SHA256: $SHA256"
 
-          python3 <<'PYEOF'
-          import os, re
+          python3 - "$URL" "$SHA256" "$NEW_VERSION" <<'PYEOF'
+          import sys, re
 
-          new_version = os.environ["NEW_VERSION"]
-          url = os.environ["URL"]
-          sha256 = os.environ["SHA256"]
+          url, sha256, new_version = sys.argv[1], sys.argv[2], sys.argv[3]
 
           formula_path = "Formula/openclaude.rb"
           formula = open(formula_path).read()

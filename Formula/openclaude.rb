@@ -20,7 +20,11 @@ bottle do
   depends_on "node"
 
   def install
-    system "npm", "install", "--production"
+    # NOTE: reactor/react-reconciler/scheduler live in package.json devDependencies
+    # and scripts/build.ts resolves them at bundle time (production-react-bundle
+    # plugin). std_npm_args / --production would skip devDependencies and break
+    # the build with "Cannot find module 'react/package.json'".
+    system "npm", "install"
     system "bun", "run", "build"
     libexec.install Dir["*"]
     bin.install_symlink libexec/"bin/openclaude"
