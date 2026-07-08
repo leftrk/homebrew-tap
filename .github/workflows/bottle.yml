@@ -76,14 +76,17 @@ jobs:
           python3 - *.bottle.json <<'PYEOF' > /tmp/bottle-block.txt
           import json, sys, pathlib
           bottles = {}
+          rebuild = 0
           for f in sys.argv[1:]:
               data = json.loads(pathlib.Path(f).read_text())
               for formula_data in data.values():
+                  rebuild = formula_data["bottle"].get("rebuild", 0)
                   for tag, info in formula_data["bottle"]["tags"].items():
                       bottles[tag] = info["sha256"]
           root = "https://github.com/${{ github.repository }}/releases/download/bottles"
           lines = ["  bottle do", f'    root_url "{root}"']
-          lines.append("    rebuild 1")
+          if rebuild:
+              lines.append(f"    rebuild {rebuild}")
           for tag, sha in sorted(bottles.items()):
               lines.append(f'    sha256 cellar: :any_skip_relocation, {tag}: "{sha}"')
           lines.append("  end")
