@@ -3,8 +3,8 @@ class TmuxSmartName < Formula
 
   desc "Smart tmux window names like IDE tablines"
   homepage "https://github.com/leftrk/tmux-smart-name"
-  url "https://github.com/leftrk/tmux-smart-name/archive/refs/tags/v1.0.7.tar.gz"
-  sha256 "6459fc6cb579b556929d0e0d90227c8606d01c84751456e86bf288690b4a2838"
+  url "https://github.com/leftrk/tmux-smart-name/archive/refs/tags/v1.0.8.tar.gz"
+  sha256 "b0c2ed125c7135a2a446824fa7812515b88fb1db1b5dfbad5482e8a31725091a"
   license "MIT"
   head "https://github.com/leftrk/tmux-smart-name.git", branch: "master"
 
