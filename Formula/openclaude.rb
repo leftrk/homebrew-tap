@@ -7,9 +7,9 @@ class Openclaude < Formula
   #   2. update `url`/`version` below and refresh `sha256` from the tag tarball
   #   3. rebuild bottles and replace the stale hashes in the bottle block
   url "https://github.com/leftrk/openclaude/archive/refs/tags/v0.27.1.tar.gz"
-  sha256 "09275b6e75c1cd6597318748cc4dc42256e293791b0756c168b60ca69cb6ca1f"
+  sha256 "d12ddac1b4719ef7e04ea1cc96395e3b5968f89f9fe63ba3e55ede38ffac9586"
   license "SEE LICENSE FILE"
-  version "0.27.1"
+  version "0.27.0"
   head "https://github.com/leftrk/openclaude.git", branch: "main"
 
 
