@@ -6,10 +6,10 @@ class Openclaude < Formula
   #   1. tag the fork: git tag v<version> && git push origin v<version>
   #   2. update `url`/`version` below and refresh `sha256` from the tag tarball
   #   3. rebuild bottles and replace the stale hashes in the bottle block
-  url "https://github.com/leftrk/openclaude/archive/refs/tags/v0.27.1.tar.gz"
-  sha256 "d12ddac1b4719ef7e04ea1cc96395e3b5968f89f9fe63ba3e55ede38ffac9586"
+  url "https://github.com/leftrk/openclaude/archive/refs/tags/v0.27.2.tar.gz"
+  sha256 "7a9fcad2a4b2eba9d2f021c6b301d205b15acb174113c953f8a39bfca6e9a955"
   license "SEE LICENSE FILE"
-  version "0.27.0"
+  version "0.27.2"
   head "https://github.com/leftrk/openclaude.git", branch: "main"
 
 
@@ -17,7 +17,7 @@ class Openclaude < Formula
 
 
 
-  # No bottle block for 0.27.1: the previous hashes were for the upstream
+  # No bottle block for 0.27.2: the previous hashes were for the upstream
   # Gitlawb v0.27.0 build. Rebuild bottles from the leftrk fork release and
   # re-add a bottle block before pouring again.
 
