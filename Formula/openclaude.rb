@@ -31,7 +31,15 @@ bottle do
     # the build with "Cannot find module 'react/package.json'".
     system "npm", "install"
     system "bun", "run", "build"
-    libexec.install Dir["*"]
+    # Ship only the runtime file set: the bundled dist/ plus the production
+    # dependency tree (3 packages, ~10 MB). Prune node_modules down to
+    # production deps and leave the source tree, scripts, dev deps, and
+    # source maps behind — keeps the bottle at tens of MB, not hundreds.
+    system "npm", "prune", "--omit=dev"
+    libexec.install "bin", "vendor", "node_modules", "package.json", "README.md", "LICENSE"
+    libexec.install "dist/cli.mjs", "dist/sdk.mjs"
+    (libexec/"src/entrypoints").install "src/entrypoints/sdk.d.ts",
+                                        "src/entrypoints/sdk/coreTypes.generated.ts"
     bin.install_symlink libexec/"bin/openclaude"
   end
 
