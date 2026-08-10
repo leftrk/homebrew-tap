@@ -22,6 +22,14 @@ class Openclaude < Formula
   # Gitlawb v0.27.0 build. The automated bottle workflow re-adds a bottle
   # block on the next release bump.
 
+bottle do
+    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "bcd1c6e37186b2faaec3c44b7024ef30da599c5b1311c3e0a3b13576213710b3"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "90615cd6a7595a46fb6fc983fcdc8873ac246746a3e5310513963403b80264cc"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "af8e0ad25353005514037c4d68ab03287e015a081a700fcbad46a7062f325102"
+  end
+
   depends_on "bun" => :build
   depends_on "node"
 
