@@ -7,10 +7,10 @@ class Openclaude < Formula
   # pushed v* tag; it also drops the stale bottle block and dispatches a
   # bottle rebuild (bottle.yml re-adds fresh hashes). Edit by hand only for
   # emergencies.
-  url "https://github.com/leftrk/openclaude/archive/refs/tags/v0.27.2.tar.gz"
-  sha256 "7a9fcad2a4b2eba9d2f021c6b301d205b15acb174113c953f8a39bfca6e9a955"
+  url "https://github.com/leftrk/openclaude/archive/refs/tags/v28.0.0.tar.gz"
+  sha256 "75d96db5139548976c86f3c2577e286e62d4b5e39469fcbcbc591a5250d8fba0"
   license "SEE LICENSE FILE"
-  version "0.27.2"
+  version "28.0.0"
   head "https://github.com/leftrk/openclaude.git", branch: "main"
 
 
