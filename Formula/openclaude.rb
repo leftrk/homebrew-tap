@@ -13,15 +13,6 @@ class Openclaude < Formula
   version "28.0.0"
   head "https://github.com/leftrk/openclaude.git", branch: "main"
 
-
-
-
-
-
-  # No bottle block for 0.27.2: the previous hashes were for the upstream
-  # Gitlawb v0.27.0 build. The automated bottle workflow re-adds a bottle
-  # block on the next release bump.
-
 bottle do
     root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
     rebuild 1
