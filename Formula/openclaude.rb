@@ -38,7 +38,7 @@ bottle do
     # source maps behind — keeps the bottle at tens of MB, not hundreds.
     system "npm", "prune", "--omit=dev"
     libexec.install "bin", "vendor", "node_modules", "package.json", "README.md", "LICENSE"
-    libexec.install "dist/cli.mjs", "dist/sdk.mjs"
+    (libexec/"dist").install "dist/cli.mjs", "dist/sdk.mjs"
     (libexec/"src/entrypoints").install "src/entrypoints/sdk.d.ts",
                                         "src/entrypoints/sdk/coreTypes.generated.ts"
     bin.install_symlink libexec/"bin/openclaude"
