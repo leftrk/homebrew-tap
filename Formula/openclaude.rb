@@ -7,21 +7,14 @@ class Openclaude < Formula
   # pushed v* tag; it also drops the stale bottle block and dispatches a
   # bottle rebuild (bottle.yml re-adds fresh hashes). Edit by hand only for
   # emergencies.
-  url "https://github.com/leftrk/openclaude/archive/refs/tags/v28.1.0.tar.gz"
-  sha256 "b46807387ebaabfc79620c86b77a63138b989fedb425812a1d833493dcac72c1"
+  url "https://github.com/leftrk/openclaude/archive/refs/tags/v28.2.0.tar.gz"
+  sha256 "e002745ac1ef79cf5017ff03ef44a510b0adcdcd3b2a374d84c9b3715a890bd0"
   license "SEE LICENSE FILE"
-  version "28.1.0"
+  version "28.2.0"
   head "https://github.com/leftrk/openclaude.git", branch: "main"
 
 
 
-bottle do
-    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
-    rebuild 2
-    sha256 cellar: :any_skip_relocation, arm64_sequoia: "5e2ad9e65ffdd32c6f136ea2582884d2a6a9a1d7f6e005cad2e4f6f0db65bff6"
-    sha256 cellar: :any_skip_relocation, arm64_sonoma: "b05368f0d7111d3f26168b577a19ca397253acc78a25b1d7bc298e50c8ab82a7"
-    sha256 cellar: :any_skip_relocation, x86_64_linux: "b8040a641a220e58f83114db7d9726490fac2b2c855e9444fe033c002ab8e625"
-  end
 
   depends_on "bun" => :build
   depends_on "node"
