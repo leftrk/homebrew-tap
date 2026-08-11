@@ -16,6 +16,14 @@ class Openclaude < Formula
 
 
 
+bottle do
+    root_url "https://github.com/leftrk/homebrew-tap/releases/download/bottles"
+    rebuild 1
+    sha256 cellar: :any_skip_relocation, arm64_sequoia: "80668721d9aa0a08db89a19be096bc2e91ebdd72d284b50302650cde8eacbe99"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma: "0156bbf0c58884e96c662ed71d955ff708a307341082edc9d7216793c3703ec8"
+    sha256 cellar: :any_skip_relocation, x86_64_linux: "d97e10b3f1a09763e135f3e8c162c582c64e9bc67712b7f56f62364366fc6632"
+  end
+
   depends_on "bun" => :build
   depends_on "node"
 
