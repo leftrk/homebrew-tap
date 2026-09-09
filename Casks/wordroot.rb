@@ -12,9 +12,8 @@ cask "wordroot" do
   # macOS attaches com.apple.quarantine to anything Homebrew downloads, which
   # makes Gatekeeper show "cannot verify… malware" on first launch even though
   # the app is signed and notarised. Strip it after staging.
-  postflight do
-    system_command "/usr/bin/xattr",
-                   args: ["-dr", "com.apple.quarantine", "#{appdir}/Wordroot.app"]
+  postflight_steps do
+    run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{appdir}}/Wordroot.app"]
   end
 
   zap trash: [
