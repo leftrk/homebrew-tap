@@ -1,6 +1,6 @@
 cask "wordroot" do
-  version "2.0"
-  sha256 "1e07103306109a89282c3156d1fe04bb5e466feb1b8664f1686fdc997e408ee7"
+  version "3.0"
+  sha256 "40433a55bdaab21003ac599009e88cbf4e5d2a71b175791669288ac401137320"
 
   url "https://github.com/leftrk/wordroot-releases/releases/download/v#{version}/Wordroot-#{version}.dmg"
   name "Wordroot"
